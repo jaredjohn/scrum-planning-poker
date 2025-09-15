@@ -2,12 +2,17 @@ const express = require('express');
 const http = require('http');
 const socketIo = require('socket.io');
 const cors = require('cors');
+const path = require('path');
 
 const app = express();
 const server = http.createServer(app);
+
+// Serve static files from the React app build
+app.use(express.static(path.join(__dirname, '../client/dist')));
+
 const io = socketIo(server, {
   cors: {
-    origin: "http://localhost:5173",
+    origin: process.env.NODE_ENV === 'production' ? true : "http://localhost:5173",
     methods: ["GET", "POST"]
   }
 });
@@ -157,6 +162,11 @@ setInterval(() => {
     }
   }
 }, 30 * 60 * 1000); // Check every 30 minutes
+
+// Catch-all handler: send back React's index.html file for client-side routing
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+});
 
 const PORT = process.env.PORT || 3001;
 server.listen(PORT, () => {

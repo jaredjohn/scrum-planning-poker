@@ -25,7 +25,12 @@ function App() {
   const [selectedCardSet, setSelectedCardSet] = useState('fibonacci');
 
   useEffect(() => {
-    const newSocket = io('http://localhost:3001');
+    // Use Railway backend URL in production, localhost in development
+    const backendUrl = process.env.NODE_ENV === 'production' 
+      ? window.location.origin 
+      : 'http://localhost:3001';
+    
+    const newSocket = io(backendUrl);
     setSocket(newSocket);
 
     newSocket.on('connect', () => {

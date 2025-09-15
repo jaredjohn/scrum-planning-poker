@@ -8,8 +8,9 @@
     "server": "cd server && npm run dev",
     "client": "cd client && npm run dev",
     "build": "cd client && npm run build",
-    "start": "cd server && npm start",
-    "install-all": "npm install && cd client && npm install && cd ../server && npm install"
+    "start": "npm run build && cd server && npm start",
+    "install-all": "npm install && cd client && npm install && cd ../server && npm install",
+    "postinstall": "npm run install-all"
   },
   "keywords": ["scrum", "planning-poker", "react", "socket.io", "real-time"],
   "author": "Jared Rogers",
