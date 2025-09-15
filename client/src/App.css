@@ -1,0 +1,495 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Join Form Styles */
+.join-container {
+  background: white;
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+}
+
+.join-container h1 {
+  color: #333;
+  margin-bottom: 10px;
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.join-container p {
+  color: #666;
+  margin-bottom: 30px;
+  font-size: 1.1rem;
+}
+
+.join-form {
+  text-align: left;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #333;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #e1e5e9;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.room-input-group {
+  display: flex;
+  gap: 10px;
+}
+
+.room-input-group input {
+  flex: 1;
+}
+
+.create-room-btn {
+  padding: 12px 16px;
+  background: #f8f9fa;
+  border: 2px solid #e1e5e9;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+}
+
+.create-room-btn:hover {
+  background: #e9ecef;
+  border-color: #667eea;
+}
+
+/* Card Set Selector */
+.card-set-selector {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.card-set-toggle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 20px 16px;
+  background: #f8f9fa;
+  border: 2px solid #e1e5e9;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  flex: 1;
+  min-width: 140px;
+  min-height: 80px;
+}
+
+.card-set-toggle:hover {
+  background: #e9ecef;
+  border-color: #667eea;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+}
+
+.card-set-toggle.selected {
+  background: linear-gradient(135deg, #17a2b8 0%, #6f42c1 100%);
+  border-color: #17a2b8;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(23, 162, 184, 0.3);
+}
+
+.card-set-icon {
+  font-size: 2rem;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.card-set-label {
+  font-weight: 600;
+  font-size: 14px;
+  text-align: center;
+  line-height: 1.2;
+  transition: all 0.3s ease;
+}
+
+.card-set-toggle.selected .card-set-label {
+  color: white;
+}
+
+.join-btn {
+  width: 100%;
+  padding: 16px;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin-top: 10px;
+}
+
+.join-btn:hover:not(:disabled) {
+  background: #5a6fd8;
+}
+
+.join-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.connection-status {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #666;
+}
+
+/* Game Container Styles */
+.game-container {
+  background: white;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  width: 100%;
+}
+
+.game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.game-header h1 {
+  color: #333;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.room-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.room-info span {
+  background: #f8f9fa;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+}
+
+.leave-btn {
+  padding: 8px 16px;
+  background: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s ease;
+}
+
+.leave-btn:hover {
+  background: #c82333;
+}
+
+/* Players Section */
+.players-section {
+  margin-bottom: 30px;
+}
+
+.players-section h3 {
+  color: #333;
+  margin-bottom: 15px;
+  font-size: 1.3rem;
+}
+
+.players-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px;
+}
+
+.player {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.player.voted {
+  background: #d4edda;
+  border-color: #28a745;
+}
+
+.player-name {
+  font-weight: 600;
+  color: #333;
+}
+
+.vote-status {
+  font-size: 18px;
+  color: #28a745;
+}
+
+/* Voting Section */
+.voting-section {
+  margin-bottom: 30px;
+}
+
+.voting-section h3 {
+  color: #333;
+  margin-bottom: 20px;
+  font-size: 1.3rem;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  gap: 15px;
+  max-width: 600px;
+}
+
+.card {
+  aspect-ratio: 1;
+  background: white;
+  border: 3px solid #e1e5e9;
+  border-radius: 12px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 80px;
+}
+
+.card:hover:not(:disabled) {
+  border-color: #667eea;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.card.selected {
+  background: #667eea;
+  color: white;
+  border-color: #667eea;
+}
+
+.card:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Controls Section */
+.controls-section {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.reveal-btn, .reset-btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex: 1;
+  min-width: 150px;
+}
+
+.reveal-btn {
+  background: #28a745;
+  color: white;
+}
+
+.reveal-btn:hover:not(:disabled) {
+  background: #218838;
+}
+
+.reveal-btn:disabled {
+  background: #6c757d;
+  cursor: not-allowed;
+}
+
+.reset-btn {
+  background: #ffc107;
+  color: #333;
+}
+
+.reset-btn:hover:not(:disabled) {
+  background: #e0a800;
+}
+
+.reset-btn:disabled {
+  background: #6c757d;
+  cursor: not-allowed;
+}
+
+/* Results Section */
+.results-section {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 20px;
+  border: 2px solid #e1e5e9;
+}
+
+.results-section h3 {
+  color: #333;
+  margin-bottom: 15px;
+  font-size: 1.3rem;
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px;
+}
+
+.result-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: white;
+  border-radius: 8px;
+  border: 2px solid #e1e5e9;
+}
+
+.result-item .player-name {
+  font-weight: 600;
+  color: #333;
+}
+
+.result-item .vote-value {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #667eea;
+  background: #f8f9fa;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+/* Loading */
+.loading {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #666;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .app {
+    padding: 10px;
+  }
+  
+  .join-container, .game-container {
+    padding: 20px;
+  }
+  
+  .game-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .room-info {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .cards-grid {
+    grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+    gap: 10px;
+  }
+  
+  .card {
+    min-height: 70px;
+    font-size: 1.2rem;
+  }
+  
+  .controls-section {
+    flex-direction: column;
+  }
+  
+  .reveal-btn, .reset-btn {
+    flex: none;
+  }
+  
+  .card-set-selector {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .card-set-toggle {
+    flex: none;
+    min-width: auto;
+    min-height: 70px;
+    padding: 15px 12px;
+  }
+  
+  .card-set-icon {
+    font-size: 1.5rem;
+    margin-bottom: 6px;
+  }
+  
+  .card-set-label {
+    font-size: 13px;
+  }
+}
