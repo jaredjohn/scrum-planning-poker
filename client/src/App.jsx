@@ -30,6 +30,7 @@ function App() {
       ? window.location.origin 
       : 'http://localhost:3001';
     
+    console.log('Connecting to backend:', backendUrl);
     const newSocket = io(backendUrl);
     setSocket(newSocket);
 
